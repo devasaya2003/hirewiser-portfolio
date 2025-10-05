@@ -27,7 +27,7 @@ export function PortfolioContent({ portfolioData }: { portfolioData: PortfolioDa
 
   useEffect(() => {
     capturePostHogEvent(portfolioData.username);
-  },[]);
+  },[portfolioData.username]);
 
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-6 md:space-y-8 px-4  md:pt-8 pb-20 md:pb-10">
