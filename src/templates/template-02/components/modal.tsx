@@ -30,7 +30,7 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-xs" onClick={onClose} />
 
       {/* Modal Content */}
       <div className="relative bg-secondary rounded-[20px] p-6 sm:p-8 max-w-6xl max-h-[150vh] overflow-y-auto mx-4 w-full">

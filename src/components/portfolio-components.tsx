@@ -25,7 +25,7 @@ export const LoadingPortfolio = () => {
   }, []);
 
   return (
-    <main className="flex flex-col min-h-[100dvh] items-center justify-center space-y-8">
+    <main className="flex flex-col min-h-dvh items-center justify-center space-y-8">
       <div className="text-center space-y-4">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-white mx-auto"></div>
         <p className="text-lg text-muted-foreground max-w-md">
@@ -37,7 +37,7 @@ export const LoadingPortfolio = () => {
 };
 
 export const ErrorPortfolio = ({ username }: { username: string }) => (
-  <main className="flex flex-col min-h-[100dvh] items-center justify-center space-y-8">
+  <main className="flex flex-col min-h-dvh items-center justify-center space-y-8">
     <div className="text-center space-y-4">
       <h1 className="text-2xl font-bold">Portfolio Not Found</h1>
       <p className="text-muted-foreground">
@@ -56,7 +56,7 @@ export const ErrorPortfolio = ({ username }: { username: string }) => (
 );
 
 export const NoSubdomainPortfolio = () => (
-  <main className="flex flex-col min-h-[100dvh] items-center justify-center space-y-8">
+  <main className="flex flex-col min-h-dvh items-center justify-center space-y-8">
     <div className="text-center space-y-4">
       <p className="text-muted-foreground">
         Let&apos;s get you a cool portfolio. Visit{" "}

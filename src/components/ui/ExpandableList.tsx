@@ -52,7 +52,7 @@ const ExpandableList: React.FC<ExpandableListProps> = ({
           {/* Header */}
           <button
             onClick={() => toggleItem(item.id)}
-            className="w-full bg-secondary rounded-[16px] p-4 sm:p-5 md:p-6 flex justify-between items-center hover:bg-[#252526] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:ring-opacity-50"
+            className="w-full bg-secondary rounded-[16px] p-4 sm:p-5 md:p-6 flex justify-between items-center hover:bg-[#252526] transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-foreground/20 focus:ring-opacity-50"
             aria-expanded={isExpanded(item.id)}
             aria-controls={`content-${item.id}`}
           >
@@ -60,7 +60,7 @@ const ExpandableList: React.FC<ExpandableListProps> = ({
               {item.question}
             </h3>
             
-            <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 bg-secondary/40 rounded-[16px] flex items-center justify-center shadow-[0px_0px_20px_#ffffff0c] transition-transform duration-200">
+            <div className="shrink-0 w-8 h-8 sm:w-9 sm:h-9 bg-secondary/40 rounded-[16px] flex items-center justify-center shadow-[0px_0px_20px_#ffffff0c] transition-transform duration-200">
               <Image 
                 src="/images/img_overlay_shadow_overlayblur_white_a700_32x32.svg" 
                 alt="Toggle Icon" 

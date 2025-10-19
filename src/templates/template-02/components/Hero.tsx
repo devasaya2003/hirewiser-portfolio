@@ -37,7 +37,7 @@ export default function Hero({ title, imageSrc, email }: HeroProps) {
 
           {/* Right */}
           <div className="w-full lg:w-1/2 flex items-center justify-center">
-            <div className="aspect-[16/9] w-full relative">
+            <div className="aspect-video w-full relative">
               <Image
                 src={imageSrc || defaultImageSrc}
                 alt=""

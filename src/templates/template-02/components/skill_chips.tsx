@@ -49,9 +49,9 @@ export function CustomTooltip({ active, payload }: CustomTooltipProps) {
     const { name, level } = data;
 
     return (
-      <div className="px-2 py-1 border shadow-sm rounded-md text-sm bg-[var(--popover)] border-[var(--border)] text-[var(--popover-foreground)]">
+      <div className="px-2 py-1 border shadow-xs rounded-md text-sm bg-(--popover) border-(--border) text-(--popover-foreground)">
         <p className="font-medium">{name}</p>
-        <p className="capitalize text-[var(--muted-foreground)]">{level}</p>
+        <p className="capitalize text-(--muted-foreground)">{level}</p>
       </div>
     );
   }
@@ -73,7 +73,7 @@ export function renderTopSkills(skills: Skill[], level = 'advanced', limit = 3) 
       {filteredSkills.map((skillItem, index) => (
         <div
           key={index}
-          className="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-md px-3 py-1.5 text-sm shadow-sm
+          className="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-md px-3 py-1.5 text-sm shadow-xs
                    flex items-center flex-wrap gap-x-1.5 transition-colors"
         >
           <span className="font-medium text-gray-800 dark:text-gray-200">

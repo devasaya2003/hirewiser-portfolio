@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="w-full px-4 sm:px-6 lg:px-8 py-2 sticky top-1 z-[100]">
+    <header className="w-full px-4 sm:px-6 lg:px-8 py-2 sticky top-1 z-100">
       <div className="flex justify-between items-center bg-secondary/20 backdrop-blur-md rounded-[26px] px-3 py-3 sm:px-4 sm:py-3 md:px-6 md:py-4 relative">
         {/* Logo Section */}
         <div className="flex items-center gap-2">

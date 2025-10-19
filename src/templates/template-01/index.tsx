@@ -48,7 +48,7 @@ export default function Template01({ portfolioData }: { portfolioData: Portfolio
   },[portfolioData.username]);
 
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-6 md:space-y-8 px-4  md:pt-8 pb-20 md:pb-10 max-w-2xl mx-auto">
+    <main className="flex flex-col min-h-dvh space-y-6 md:space-y-8 my-10 px-4 md:pt-8 pb-20 md:pb-10 max-w-2xl mx-auto">
       <ResponsiveNavbar portfolioData={portfolioData} />
       
       {/* Hero Section */}

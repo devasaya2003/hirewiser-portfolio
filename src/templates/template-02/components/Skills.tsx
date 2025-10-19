@@ -48,7 +48,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
 
   return (
     <section id="skills">
-      <div className="rounded-[20px] border shadow-sm p-5 bg-[var(--card)] border-[var(--border)]">
+      <div className="rounded-[20px] border shadow-xs p-5 bg-(--card) border-(--border)">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Radar Chart */}
           <div className="h-80">

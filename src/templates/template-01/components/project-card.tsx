@@ -43,7 +43,7 @@ export function ProjectCard({
   return (
     <Card
       className={
-        "flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full"
+        "flex bg-transparent flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full"
       }
     >
       <Link
@@ -70,7 +70,7 @@ export function ProjectCard({
           />
         )}
         {!video && !image && (
-          <div className="h-40 w-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center">
+          <div className="h-40 w-full bg-linear-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center">
           </div>
         )}
       </Link>

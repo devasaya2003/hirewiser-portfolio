@@ -100,7 +100,7 @@ const ExpandableDock = ({
         )}
       >
         <div
-          className="flex items-center gap-4 px-4 sm:px-6 py-4 w-full h-[68px] whitespace-nowrap border-t border-border flex-shrink-0"
+          className="flex items-center gap-4 px-4 sm:px-6 py-4 w-full h-[68px] whitespace-nowrap border-t border-border shrink-0"
         >
           {headerContent(toggleExpand, isExpanded)}
         </div>

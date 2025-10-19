@@ -80,7 +80,7 @@ export default function ProjectSection({ projects }: ProjectsProps) {
           onClose={() => setProjectModalOpen(false)}
           title={selectedProject.title}
         >
-          <div className="max-h-[28rem] overflow-y-auto rounded-lg bg-background p-6">
+          <div className="max-h-112 overflow-y-auto rounded-lg bg-background p-6">
             <div className="space-y-6 text-foreground/80">
 
               {/* Metadata Section */}

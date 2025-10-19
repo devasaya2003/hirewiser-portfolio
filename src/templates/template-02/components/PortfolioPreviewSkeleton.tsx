@@ -21,7 +21,7 @@ export default function PortfolioPreviewSkeleton() {
                 </div>
                 {/* Right Content - Image */}
                 <div className="w-full lg:w-1/2 flex items-center justify-center">
-                  <div className="aspect-[16/9] w-full">
+                  <div className="aspect-video w-full">
                     <Skeleton height="100%" className="rounded-3xl" />
                   </div>
                 </div>

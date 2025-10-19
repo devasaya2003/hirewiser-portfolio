@@ -20,7 +20,7 @@ export default function Blogs() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
         {/* Featured Article */}
-        <div className="lg:col-span-3 bg-gradient-to-b overflow-hidden from-secondary to-secondary/20 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] relative rounded-[20px] p-6 sm:p-8 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
+        <div className="lg:col-span-3 bg-linear-to-b overflow-hidden from-secondary to-secondary/20 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] relative rounded-[20px] p-6 sm:p-8 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg">
           <Image
             src={blogArticles[0]!.image!}
             alt={blogArticles[0]!.title}
@@ -66,7 +66,7 @@ export default function Blogs() {
           {blogArticles.slice(1).map((article, index) => (
             <div
               key={index}
-              className="bg-gradient-to-b overflow-hidden from-secondary to-secondary/20 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] relative rounded-[20px] p-6 sm:p-8 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg"
+              className="bg-linear-to-b overflow-hidden from-secondary to-secondary/20 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] relative rounded-[20px] p-6 sm:p-8 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg"
             >
               <Button variant="outline" size="sm" className="mb-4 rounded-full">
                 {article.category}
