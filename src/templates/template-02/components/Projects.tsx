@@ -58,7 +58,11 @@ export default function ProjectSection({ projects }: ProjectsProps) {
                   </h3>
                   <div className="text-foreground/50 flex flex-row items-center gap-2 py-2 hover:text-primary">
                     <Link2 />
-                    <Link href={project.link} onClick={(e) => e.stopPropagation()}>
+                    <Link
+                      href={project.link}
+                      onClick={(e) => e.stopPropagation()}
+                      className="truncate max-w-[300px] block"
+                    >
                       {project.link}
                     </Link>
                   </div>

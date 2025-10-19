@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { User } from "lucide-react";
+import { Mail, User } from "lucide-react";
 
 interface FooterProps {
   email?: string;
@@ -32,24 +32,18 @@ export default function Footer({ email, firstName, lastName, profileImage }: Foo
             </div>
           )}
         </div>
-        <div className="bg-secondary overflow-hidden relative rounded-t-[20px] p-8 sm:p-12 max-w-4xl mx-auto">
+        <div className="bg-secondary overflow-hidden relative rounded-t-[20px]  sm:p-12 max-w-4xl mx-auto">
           <div className="absolute h-full w-16 top-0 inset -left-10 bg-orange-800/30 blur-2xl"></div>
           <div className="absolute h-full w-16 top-0 inset -right-10 bg-orange-800/30 blur-2xl"></div>
 
-          <Image
-            src="/images/img_6625065aaabd00c_white_a700_62x66.svg"
-            alt="Contact Icon"
-            width={66}
-            height={62}
-            className="w-16 h-15 mx-auto mb-6"
-          />
+          <Mail className="w-16 h-15 mx-auto mb-6" size={66} />
           <h2 className="font-medium text-4xl sm:text-5xl lg:text-[52px] text-foreground leading-tight mb-6">
             Let&apos;s work together
           </h2>
-          
+
           <a
             href={`mailto:${contactEmail}`}
-            className="mb-4 inline-block bg-primary text-white font-medium rounded-full transition-all duration-300 transform hover:-translate-y-1 px-8 py-4 text-lg"
+            className="mb-4 inline-block bg-primary text-secondary font-medium rounded-full transition-all duration-300 transform hover:-translate-y-1 px-8 py-4 text-lg"
           >
             {contactEmail}
           </a>
