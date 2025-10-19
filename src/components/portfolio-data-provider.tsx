@@ -107,27 +107,45 @@ export interface UserProfile {
   links: Link[];
   certificates: Certificate[];
   education: Education[];
-  templateId?: string; // Optional template ID from API
+  template?: string; // Optional template ID from API
 }
 
 // ============ 🔹 Transformed Portfolio Data 🔹 ============
 
 export interface PortfolioData {
+  // Basic Info
   username: string;
   name: string;
+  firstName: string;
+  lastName: string;
   initials: string;
+  email: string;
+  phone: string;
+  
+  // Profile Images
+  avatarUrl: string;
+  profileImage: string;
+  headerImage: string;
+  
+  // Descriptions
+  description: string;
+  headerText: string;
+  summary: string;
+  
+  // Location (for template-01)
   url: string;
   location: string;
   locationLink: string;
-  avatarUrl: string;
-  description: string;
-  summary: string;
+  
+  // Navigation
   navbar: any[];
-  skills: string[];
-  work: TransformedWork[];
-  education: TransformedEducation[];
-  projects: TransformedProject[];
-  hackathons: TransformedCertificate[];
+  
+  // Skills - Keep both formats for flexibility
+  skills: string[]; // Simple string array for template-01
+  skillset: UserSkill[]; // Full skill objects with levels for template-02
+  
+  // Links/Social
+  links: Link[]; // Raw links array for template-02
   contact: {
     email?: string;
     social: Record<string, {
@@ -136,6 +154,24 @@ export interface PortfolioData {
       navbar: boolean;
     }>;
   };
+  
+  // Work Experience - Keep both formats
+  work: TransformedWork[]; // Transformed for template-01
+  experience: Experience[]; // Raw for template-02
+  
+  // Education
+  education: TransformedEducation[]; // Transformed for template-01
+  educationRaw: Education[]; // Raw for template-02
+  
+  // Projects - Keep both formats
+  projects: TransformedProject[]; // Transformed for template-01
+  projectsRaw: Project[]; // Raw for template-02
+  
+  // Certificates/Hackathons
+  hackathons: TransformedCertificate[]; // Transformed for template-01
+  certificates: Certificate[]; // Raw for template-02
+  
+  // Template Selection
   templateId?: string; // Template ID for multi-template support
 }
 

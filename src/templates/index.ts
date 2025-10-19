@@ -6,7 +6,7 @@
  */
 
 import Template01 from './template-01';
-import { template01Config } from './template-01/config';
+import Template02 from './template-02';
 
 /**
  * Template interface defining the structure of a template entry
@@ -15,29 +15,25 @@ export interface Template {
   id: string;
   name: string;
   component: React.ComponentType<any>;
-  config: typeof template01Config;
 }
 
 /**
  * Registry of all available templates
  * 
  * Add new templates here by importing them and adding to this object.
- * The key should match the template ID from the config.
+ * The key should match the template ID from the API.
  */
 export const TEMPLATES: Record<string, Template> = {
   'template-01': {
     id: 'template-01',
     name: 'Classic Portfolio',
     component: Template01,
-    config: template01Config,
   },
-  // Add more templates here as they are created
-  // 'template-02': {
-  //   id: 'template-02',
-  //   name: 'Minimal Portfolio',
-  //   component: Template02,
-  //   config: template02Config,
-  // },
+  'template-02': {
+    id: 'template-02',
+    name: 'Modern Portfolio',
+    component: Template02,
+  },
 };
 
 /**

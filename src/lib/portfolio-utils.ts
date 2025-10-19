@@ -14,6 +14,8 @@ export const fetchPortfolio = async (username: string) => {
 
   const fullURL = `${portfolioURL}/${username}`;
 
+  const isDev = process.env.NODE_ENV === 'development';
+
   try {
     const portfolioData = await fetch(fullURL, {
       method: 'GET',
@@ -21,7 +23,10 @@ export const fetchPortfolio = async (username: string) => {
         'Content-Type': 'application/json',
         'User-Agent': 'Portfolio-App/1.0',
       },
-      next: { revalidate: 60 }
+      // ✅ Disable caching in dev, keep revalidation in prod
+      ...(isDev
+        ? { cache: 'no-store' }
+        : { next: { revalidate: 60 } }),
     });
 
     if (!portfolioData.ok) {
@@ -71,7 +76,7 @@ export const fetchPortfolio = async (username: string) => {
       error: error
     };
   }
-}
+};
 
 export const transformUserData = (userData: UserProfile) => {
   try {
@@ -166,23 +171,59 @@ export const transformUserData = (userData: UserProfile) => {
     });
 
     const transformedData = {
+      // Basic Info
       username,
       name,
+      firstName: userData.firstName || '',
+      lastName: userData.lastName || '',
       initials,
+      email: userData.email || '',
+      phone: userData.phone || '',
+      
+      // Profile Images
+      avatarUrl,
+      profileImage: userData.profileImage || '',
+      headerImage: userData.headerImage || '',
+      
+      // Descriptions
+      description,
+      headerText: userData.headerText || '',
+      summary,
+      
+      // Location (for template-01)
       url: '',
       location: '',
       locationLink: '',
-      avatarUrl,
-      description,
-      summary,
+      
+      // Navigation
       navbar: [],
-      skills,
-      work,
-      education,
-      projects,
-      hackathons,
+      
+      // Skills - Both formats
+      skills, // Simple array
+      skillset: userData.skillset || [], // Full objects with skill levels
+      
+      // Links/Social
+      links: userData.links || [], // Raw links for template-02
       contact,
-      templateId: userData.templateId || 'template-01', // Use provided template or default
+      
+      // Work Experience - Both formats
+      work, // Transformed
+      experience: userData.experience || [], // Raw
+      
+      // Education - Both formats
+      education, // Transformed
+      educationRaw: userData.education || [], // Raw
+      
+      // Projects - Both formats
+      projects, // Transformed
+      projectsRaw: userData.projects || [], // Raw
+      
+      // Certificates
+      hackathons, // Transformed
+      certificates: userData.certificates || [], // Raw
+      
+      // Template Selection
+      templateId: userData.template || 'template-01',
     };
 
     return transformedData;
