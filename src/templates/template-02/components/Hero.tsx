@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
-interface HeroProps {
+type HeroProps = {
   title?: string;
   imageSrc?: string;
   email?: string;

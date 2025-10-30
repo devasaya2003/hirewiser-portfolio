@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Mail, User } from "lucide-react";
 
-interface FooterProps {
+type FooterProps = {
   email?: string;
   firstName?: string;
   lastName?: string;

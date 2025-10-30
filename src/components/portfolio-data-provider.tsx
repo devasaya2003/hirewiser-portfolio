@@ -3,39 +3,39 @@
 import type React from "react";
 import { createContext, useContext, type ErrorInfo, Component } from "react";
 
-// ============ 🔹 Atomic Interfaces 🔹 ============
+// ============ 🔹 Atomic types = 🔹 ============
 
-// Basic reusable interfaces
-export interface Link {
+// Basic reusable types =
+export type Link = {
   id: string;
   linkUrl: string;
   linkTitle: string;
 }
 
-export interface Skill {
+export type Skill = {
   id: string;
   name: string;
 }
 
-export interface UserSkill {
+export type UserSkill = {
   id: string;
   skillLevel: "beginner" | "intermediate" | "advanced";
   skill: Skill;
 }
 
-export interface ProjectLink {
+export type ProjectLink = {
   id: string;
   linkUrl: string;
   linkTitle: string;
 }
 
-export interface ProjectSkill {
+export type ProjectSkill = {
   id: string;
   skill: Skill;
 }
 
-// Project interface
-export interface Project {
+// Project type
+export type Project = {
   id: string;
   title: string;
   description: string;
@@ -48,8 +48,8 @@ export interface Project {
   projectSkillset: ProjectSkill[];
 }
 
-// Experience interface
-export interface Experience {
+// Experience type
+export type Experience = {
   id: string;
   title: string;
   companyName: string;
@@ -59,8 +59,8 @@ export interface Experience {
   logoURL: string | null;
 }
 
-// Certificate interface
-export interface Certificate {
+// Certificate type
+export type Certificate = {
   id: string;
   title: string;
   description: string;
@@ -73,13 +73,13 @@ export interface Certificate {
   linkName: string | null;
 }
 
-// Education interface
-export interface Degree {
+// Education type
+export type Degree = {
   id: string;
   name: string;
 }
 
-export interface Education {
+export type Education = {
   id: string;
   eduFrom: string;
   eduFromLink: string;
@@ -89,9 +89,9 @@ export interface Education {
   degree: Degree;
 }
 
-// ============ 🔹 Root API Interface 🔹 ============
+// ============ 🔹 Root API type 🔹 = ============
 
-export interface UserProfile {
+export type UserProfile = {
   id: string;
   userName: string;
   firstName: string;
@@ -113,7 +113,7 @@ export interface UserProfile {
 
 // ============ 🔹 Transformed Portfolio Data 🔹 ============
 
-export interface PortfolioData {
+export type PortfolioData = {
   // Basic Info
   username: string;
   name: string;
@@ -179,8 +179,8 @@ export interface PortfolioData {
   templateId?: string; // Template ID for multi-template support
 }
 
-// Transformed interfaces for UI components
-export interface TransformedWork {
+// Transformed types = for UI components
+export type TransformedWork = {
   company: string;
   title: string;
   href: string;
@@ -191,7 +191,7 @@ export interface TransformedWork {
   description: string;
 }
 
-export interface TransformedEducation {
+export type TransformedEducation = {
   school: string;
   degree: string;
   href: string;
@@ -200,7 +200,7 @@ export interface TransformedEducation {
   end: string;
 }
 
-export interface TransformedProject {
+export type TransformedProject = {
   title: string;
   description: string;
   dates: string;
@@ -211,7 +211,7 @@ export interface TransformedProject {
   href: string;
 }
 
-export interface TransformedCertificate {
+export type TransformedCertificate = {
   title: string;
   description: string;
   location: string;
@@ -220,13 +220,13 @@ export interface TransformedCertificate {
   links: TransformedLink[];
 }
 
-export interface TransformedLink {
+export type TransformedLink = {
   type: string;
   href: string;
   linkTitle?: string;
 }
 
-interface PortfolioDataContextType {
+type PortfolioDataContextType = {
   portfolioData: PortfolioData | null;
   isLoading: boolean;
   error: string | null;
@@ -246,7 +246,7 @@ export const usePortfolioData = () => {
   return context;
 };
 
-interface PortfolioDataProviderProps {
+type PortfolioDataProviderProps = {
   children: React.ReactNode;
   portfolioData: PortfolioData | null;
   isLoading: boolean;
@@ -254,7 +254,7 @@ interface PortfolioDataProviderProps {
 }
 
 // Error Boundary for Portfolio components
-interface ErrorBoundaryState {
+type ErrorBoundaryState = {
   hasError: boolean;
   error?: Error;
 }

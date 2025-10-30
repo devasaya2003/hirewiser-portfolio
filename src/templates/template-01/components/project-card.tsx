@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
-interface Props {
+type Props = {
   title: string;
   href?: string;
   description: string;

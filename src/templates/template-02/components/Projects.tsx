@@ -7,7 +7,7 @@ import { FaDatabase } from "react-icons/fa";
 import Modal from "./modal";
 import { useState } from "react";
 
-interface ProjectsProps {
+type ProjectsProps = {
   projects?: Array<{
     title: string;
     description: string;
@@ -15,7 +15,7 @@ interface ProjectsProps {
     startedAt?: string;
     endAt?: string;
   }>;
-}
+};
 
 export default function ProjectSection({ projects }: ProjectsProps) {
   const [isProjectModalOpen, setProjectModalOpen] = useState(false);
@@ -25,7 +25,9 @@ export default function ProjectSection({ projects }: ProjectsProps) {
 
   const availableProjects = projects || [];
 
-  if (availableProjects.length === 0) return null;
+  if (availableProjects.length === 0) {
+    return null;
+  }
 
   const handleProjectClick = (
     project: NonNullable<ProjectsProps["projects"]>[number]
@@ -49,6 +51,7 @@ export default function ProjectSection({ projects }: ProjectsProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {availableProjects.map((project, index) => (
             <button
+              type="button"
               key={index}
               onClick={() => handleProjectClick(project)}
               className="bg-secondary rounded-[20px] p-6 sm:p-8 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg text-left w-full"

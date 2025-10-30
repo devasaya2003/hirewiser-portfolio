@@ -35,9 +35,9 @@ const platformIcons: Record<string, any> = {
   youtube: FaYoutube,
 };
 
-interface NavbarProps {
+type NavbarProps = {
   portfolioData?: any;
-}
+};
 
 export default function ResponsiveNavbar({ portfolioData }: NavbarProps) {
   const socialLinks = Object.entries(portfolioData.contact.social || {}).filter(

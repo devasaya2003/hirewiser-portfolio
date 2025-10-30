@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import type { PortfolioData } from "./portfolio-data-provider";
 
-interface TemplateRendererProps {
+type TemplateRendererProps = {
   portfolioData: PortfolioData;
   templateComponent: React.ComponentType<{ portfolioData: PortfolioData }>;
-}
+};
 
 function PortfolioLoading() {
   return (

@@ -4,18 +4,16 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
-interface HeaderProps {
+type HeaderProps = {
   userName?: string;
   projectsCount?: number;
   experienceCount?: number;
-  blogsCount?: number;
-}
+};
 
 const Header: React.FC<HeaderProps> = ({
   userName = "Portfolio",
   projectsCount = 0,
   experienceCount = 0,
-  blogsCount = 0,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
@@ -31,7 +29,6 @@ const Header: React.FC<HeaderProps> = ({
       show: projectsCount > 0,
     },
     { label: "Work", href: "#work", id: "work", show: experienceCount > 0 },
-    { label: "Blog", href: "#blog", id: "blog", show: blogsCount > 0 },
     { label: "Contact", href: "#contact", id: "contact", show: true },
   ].filter((item) => item.show);
 
@@ -90,6 +87,7 @@ const Header: React.FC<HeaderProps> = ({
 
         {/* Hamburger Menu Icon (Mobile only) */}
         <button
+          type="button"
           className="block lg:hidden p-2 text-foreground"
           aria-label="Open menu"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -100,6 +98,7 @@ const Header: React.FC<HeaderProps> = ({
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
+            <title>Menu</title>
             <path
               strokeLinecap="round"
               strokeLinejoin="round"

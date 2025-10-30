@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchPortfolio, transformUserData } from "@/lib/portfolio-utils";
 import type { PortfolioData } from "@/components/portfolio-data-provider";
 
-export interface UsePortfolioResult {
+export type UsePortfolioResult = {
   portfolioData: PortfolioData | null;
   isLoading: boolean;
   error: string | null;

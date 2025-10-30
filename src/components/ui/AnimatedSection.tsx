@@ -3,10 +3,10 @@ import type React from "react";
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 
-interface AnimatedSectionProps {
+type AnimatedSectionProps = {
   children: ReactNode;
   className?: string;
-}
+};
 
 const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   children,

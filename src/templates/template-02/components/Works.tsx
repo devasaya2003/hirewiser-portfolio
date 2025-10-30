@@ -6,7 +6,7 @@ import Modal from "./modal";
 import { useState } from "react";
 import { Calendar } from "lucide-react";
 
-interface WorksProps {
+type WorksProps = {
   experience?: Array<{
     title: string;
     companyName: string;
@@ -14,7 +14,7 @@ interface WorksProps {
     startedAt: string;
     endAt?: string;
   }>;
-}
+};
 
 export default function Works({ experience }: WorksProps) {
   const [isWorkModalOpen, setWorkModalOpen] = useState(false);
@@ -24,7 +24,9 @@ export default function Works({ experience }: WorksProps) {
 
   const availableExperience = experience || [];
 
-  if (availableExperience.length === 0) return null;
+  if (availableExperience.length === 0) {
+    return null;
+  }
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -60,6 +62,7 @@ export default function Works({ experience }: WorksProps) {
 
               return (
                 <button
+                  type="button"
                   key={index}
                   onClick={() => handleWorkClick(work)}
                   className="w-full text-left bg-background/20 relative overflow-hidden hover:bg-background/50 transition-all duration-500 ease-in-out rounded-[16px] p-6 sm:p-8"

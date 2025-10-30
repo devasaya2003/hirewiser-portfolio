@@ -60,7 +60,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
 
 Dock.displayName = "Dock";
 
-export interface DockIconProps {
+export type DockIconProps = {
   size?: number;
   magnification?: number;
   distance?: number;

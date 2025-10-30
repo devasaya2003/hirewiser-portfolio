@@ -3,14 +3,14 @@ import type React from "react";
 import { useState } from "react";
 import Image from "next/image";
 
-interface ExpandableItem {
+type ExpandableItem = {
   id: string;
   question: string;
   answer?: string;
   isExpanded?: boolean;
 }
 
-interface ExpandableListProps {
+type ExpandableListProps = {
   items: ExpandableItem[];
   className?: string;
   allowMultiple?: boolean;
@@ -52,6 +52,7 @@ const ExpandableList: React.FC<ExpandableListProps> = ({
         <div key={item.id} className="w-full">
           {/* Header */}
           <button
+            type="button"
             onClick={() => toggleItem(item.id)}
             className="w-full bg-secondary rounded-[16px] p-4 sm:p-5 md:p-6 flex justify-between items-center hover:bg-[#252526] transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-foreground/20 focus:ring-opacity-50"
             aria-expanded={isExpanded(item.id)}

@@ -1,7 +1,6 @@
 "use client";
 
 import About from "./components/About";
-import Blogs from "./components/Blog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -30,15 +29,11 @@ export default function Template02({
 }: {
   portfolioData: PortfolioData;
 }) {
-  // Use raw data directly - no transformation needed!
   const projectsCount = portfolioData.projectsRaw?.length || 0;
   const experienceCount = portfolioData.experience?.length || 0;
-  const blogsCount = 0; // TODO: Add blog support when available
 
-  // Use raw experience data (already in correct format)
   const experienceData = portfolioData.experience || [];
 
-  // Use raw projects data (already in correct format)
   const projectsData =
     portfolioData.projectsRaw?.map((project) => ({
       title: project.title,
@@ -48,16 +43,13 @@ export default function Template02({
       endAt: project.endAt || undefined,
     })) || [];
 
-  // Convert experience data null to undefined for TypeScript
   const experienceDataFormatted = experienceData.map((exp) => ({
     ...exp,
     endAt: exp.endAt || undefined,
   }));
 
-  // Use raw skillset data (already has skill levels)
   const skillsetData = portfolioData.skillset || [];
 
-  // Use raw links data (already in correct format)
   const linksData = portfolioData.links || [];
 
   return (
@@ -66,7 +58,6 @@ export default function Template02({
         userName={portfolioData.name}
         projectsCount={projectsCount}
         experienceCount={experienceCount}
-        blogsCount={blogsCount}
       />
       <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
@@ -98,13 +89,6 @@ export default function Template02({
         {experienceDataFormatted && experienceDataFormatted.length > 0 && (
           <section id="work">
             <Works experience={experienceDataFormatted} />
-          </section>
-        )}
-
-        {/* Blog Section - TODO: Implement when blog data is available */}
-        {blogsCount > 0 && (
-          <section id="blog">
-            <Blogs />
           </section>
         )}
       </div>

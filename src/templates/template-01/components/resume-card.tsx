@@ -9,7 +9,7 @@ import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-interface ResumeCardProps {
+type ResumeCardProps = {
   logoUrl: string;
   altText: string;
   title: string;

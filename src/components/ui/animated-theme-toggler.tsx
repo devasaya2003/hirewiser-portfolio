@@ -54,8 +54,9 @@ export const AnimatedThemeToggler = forwardRef<HTMLButtonElement, Props>(
     }, []);
 
     const toggleTheme = useCallback(async () => {
-      if (!(buttonElement && mounted) || typeof document === "undefined")
+      if (!(buttonElement && mounted) || typeof document === "undefined") {
         return;
+      }
 
       // Check if browser supports view transitions
       const supportsViewTransition = "startViewTransition" in document;
@@ -93,8 +94,8 @@ export const AnimatedThemeToggler = forwardRef<HTMLButtonElement, Props>(
               pseudoElement: "::view-transition-new(root)",
             }
           );
-        } catch (error) {
-          // Fallback for browsers that don't support view transitions
+        } catch (error: unknown) {
+          console.log(error);
           const newTheme = !isDark;
           setIsDark(newTheme);
           document.documentElement.classList.toggle("dark");
@@ -113,6 +114,7 @@ export const AnimatedThemeToggler = forwardRef<HTMLButtonElement, Props>(
     if (!(hydrated && mounted)) {
       return (
         <button
+          type="button"
           ref={refCallback}
           className={cn(className)}
           suppressHydrationWarning
@@ -123,7 +125,12 @@ export const AnimatedThemeToggler = forwardRef<HTMLButtonElement, Props>(
     }
 
     return (
-      <button ref={refCallback} onClick={toggleTheme} className={cn(className)}>
+      <button
+        type="button"
+        ref={refCallback}
+        onClick={toggleTheme}
+        className={cn(className)}
+      >
         {isDark ? <SunIcon /> : <MoonIcon />}
       </button>
     );

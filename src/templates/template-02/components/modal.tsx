@@ -5,12 +5,12 @@ import type React from "react";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 
-interface ModalProps {
+type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   title: string;
   children: React.ReactNode;
-}
+};
 
 export default function Modal({
   isOpen,
@@ -30,14 +30,18 @@ export default function Modal({
     };
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-xs"
+      <button
+        type="button"
+        className="absolute inset-0 bg-black/50 backdrop-blur-xs appearance-none border-0 cursor-default"
         onClick={onClose}
+        aria-label="Close modal"
       />
 
       {/* Modal Content */}
@@ -47,6 +51,7 @@ export default function Modal({
             {title}
           </h2>
           <button
+            type="button"
             onClick={onClose}
             className="text-foreground/50 hover:text-foreground transition-colors"
           >

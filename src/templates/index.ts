@@ -9,9 +9,9 @@ import Template01 from "./template-01";
 import Template02 from "./template-02";
 
 /**
- * Template interface defining the structure of a template entry
+ * Template type defining the structure of a template entry
  */
-export interface Template {
+export type Template = {
   id: string;
   name: string;
   component: React.ComponentType<any>;

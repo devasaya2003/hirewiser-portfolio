@@ -21,9 +21,9 @@ import {
   skillLevelToValue,
 } from "./skill_chips";
 
-interface SkillsSectionProps {
+type SkillsSectionProps = {
   skills: Skill[];
-}
+};
 
 export default function SkillsSection({ skills }: SkillsSectionProps) {
   const [mounted, setMounted] = useState(false);
@@ -32,7 +32,9 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
     setMounted(true);
   }, []);
 
-  if (!(mounted && skills) || skills.length === 0) return null;
+  if (!(mounted && skills) || skills.length === 0) {
+    return null;
+  }
 
   const radarData = skills
     .sort(

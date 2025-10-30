@@ -4,12 +4,13 @@ import {
   AnimatePresence,
   motion,
   useInView,
+  type UseInViewOptions,
   type Variants,
 } from "framer-motion";
 import { useRef } from "react";
 import { useHydrated } from "@/hooks/use-hydrated";
 
-interface BlurFadeProps {
+type BlurFadeProps = {
   children: React.ReactNode;
   className?: string;
   variant?: {
@@ -20,9 +21,9 @@ interface BlurFadeProps {
   delay?: number;
   yOffset?: number;
   inView?: boolean;
-  inViewMargin?: string;
+  inViewMargin?: UseInViewOptions["margin"];
   blur?: string;
-}
+};
 const BlurFade = ({
   children,
   className,
@@ -38,7 +39,7 @@ const BlurFade = ({
   const hydrated = useHydrated();
   const inViewResult = useInView(ref, {
     once: true,
-    margin: inViewMargin as any,
+    margin: inViewMargin,
   });
   const isInView = !inView || inViewResult;
 

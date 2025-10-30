@@ -1,10 +1,10 @@
-export interface Skill {
+export type Skill = {
   name?: string;
   skill?: {
     name: string;
   };
   skillLevel: string | null;
-}
+};
 
 export const skillLevelToValue = (level: string | null): number => {
   switch (level?.toLowerCase()) {
@@ -32,7 +32,7 @@ export const getSkillColor = (level: string | null) => {
   }
 };
 
-interface CustomTooltipProps {
+type CustomTooltipProps = {
   active?: boolean;
   payload?: Array<{
     payload: {
@@ -40,12 +40,14 @@ interface CustomTooltipProps {
       level: string;
     };
   }>;
-}
+};
 
 export function CustomTooltip({ active, payload }: CustomTooltipProps) {
   if (active && payload?.length) {
     const data = payload[0]?.payload;
-    if (!data) return null;
+    if (!data) {
+      return null;
+    }
     const { name, level } = data;
 
     return (
@@ -72,7 +74,9 @@ export function renderTopSkills(
     )
     .slice(0, limit);
 
-  if (filteredSkills.length === 0) return null;
+  if (filteredSkills.length === 0) {
+    return null;
+  }
 
   return (
     <div className="flex flex-wrap gap-2">

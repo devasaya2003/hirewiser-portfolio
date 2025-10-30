@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, type ReactNode, useRef, useEffect } from "react";
+import { useState, type ReactNode, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface ExpandableDockProps {
+type ExpandableDockProps = {
   headerContent: (toggleExpand: () => void, isExpanded: boolean) => ReactNode;
   children: ReactNode;
   className?: string;
@@ -27,18 +27,18 @@ const ExpandableDock = ({
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleExpand = () => {
+  const handleExpand = useCallback(() => {
     setAnimationStage("widthExpanding");
     setTimeout(() => setAnimationStage("heightExpanding"), 400);
     setTimeout(() => setAnimationStage("fullyExpanded"), 850);
-  };
+  }, []);
 
-  const handleCollapse = () => {
+  const handleCollapse = useCallback(() => {
     setAnimationStage("contentFadingOut");
     setTimeout(() => setAnimationStage("heightCollapsing"), 250);
     setTimeout(() => setAnimationStage("widthCollapsing"), 650);
     setTimeout(() => setAnimationStage("collapsed"), 1050);
-  };
+  }, []);
 
   const isCollapsed = animationStage === "collapsed";
   const isExpanded = animationStage === "fullyExpanded";
@@ -63,7 +63,7 @@ const ExpandableDock = ({
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isExpanded]);
+  }, [isExpanded, handleCollapse]);
 
   return (
     <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-full px-4 sm:px-0">
