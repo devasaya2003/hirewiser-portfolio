@@ -25,7 +25,6 @@ function PortfolioLoading() {
  */
 export function TemplateRenderer({ portfolioData, templateComponent: TemplateComponent }: TemplateRendererProps) {
   const [isReady, setIsReady] = useState(false);
-  console.log("PORTFOLIO DATA: ", portfolioData);
 
   useEffect(() => {
     // Wait for the next tick to ensure hydration is complete
