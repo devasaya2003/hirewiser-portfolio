@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ExternalLink } from "lucide-react";
 import type { GetUserPortfolioV3Response } from "@/types/portfolio.types";
+import { useNavigate } from "react-router-dom";
 
 interface ProjectProps {
   title: string;
@@ -8,6 +9,7 @@ interface ProjectProps {
   logo: string;
   description: string;
   preview?: string;
+  id: string; // Add id to ProjectProps
 }
 
 const ProjectItem: React.FC<ProjectProps> = ({
@@ -16,11 +18,22 @@ const ProjectItem: React.FC<ProjectProps> = ({
   logo,
   description,
   preview = "/default.png",
+  id, // Add id to destructured props
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="mb-8">
+      {/* Project Photo 
+      <div className="mb-4">
+        <img
+          src={preview}
+          alt={`${title} preview`}
+          className="w-full h-48 object-cover rounded-lg border border-[var(--border)]"
+        />
+      </div> */}
+      
       <div className="flex items-start">
         <div className="w-10 h-10 mr-4 flex-shrink-0">
           <img
@@ -32,13 +45,10 @@ const ProjectItem: React.FC<ProjectProps> = ({
 
         <div>
           <span className="relative inline-block">
-            <a
-              href={link}
-              className="text-base text-[var(--foreground)] decoration-[1px] underline underline-offset-3 decoration-[var(--muted-foreground)] cursor-pointer group flex items-center"
-              target="_blank"
-              rel="noopener noreferrer"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+            <button
+              onClick={() => navigate(`/projects/${id}`)}
+              className="text-base text-[var(--foreground)] decoration-[1px] underline underline-offset-3 decoration-[var(--muted-foreground)] cursor-pointer group flex items-center bg-transparent border-0 p-0"
+             
             >
               {title}
               <svg
@@ -53,36 +63,16 @@ const ProjectItem: React.FC<ProjectProps> = ({
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
               </svg>
-            </a>
-
+            </button>
             {isHovered && (
-              <div className="absolute z-10 left-full ml-4 top-0 w-72 p-2 shadow-lg bg-[var(--tooltip)] border border-[var(--tooltip-border)] rounded text-sm text-[var(--tooltip-foreground)]">
-                <div className="w-full h-40 overflow-hidden rounded mb-2">
-                  {preview.endsWith(".mp4") ||
-                  preview.endsWith(".webm") ||
-                  preview.endsWith(".mov") ? (
-                    <video
-                      src={preview}
-                      autoPlay
-                      muted
-                      loop
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <img
-                      src={preview}
-                      alt={`${title} preview`}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                </div>
+              <div className="absolute z-10 px-3 py-2 text-sm text-white bg-[var(--tooltip)] rounded-md shadow-lg -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
                 <p className="text-xs">{description}</p>
                 <div className="absolute top-3 -left-2 w-4 h-4 bg-[var(--tooltip)] border-l border-b border-[var(--tooltip-border)] transform rotate-45"></div>
               </div>
             )}
           </span>
-          <p className="text-sm text-[var(--muted-foreground)] mt-1">
-            {description}
+          <p className="text-sm text-[var(--muted-foreground)] mt-1 truncate">
+            {description.length > 100 ? `${description.substring(0, 85)}...` : description}
           </p>
         </div>
       </div>
@@ -105,13 +95,21 @@ const preloadMedia = (preview: string) => {
 };
 
 const Projects: React.FC<ProjectsProps> = ({ projects }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     projects?.forEach((project) => {
-      if (project.projectMedia) {
-        preloadMedia(project.projectMedia);
+      if (project.previewImageUrl) {
+        preloadMedia(project.previewImageUrl);
       }
     });
   }, [projects]);
+
+  const displayedProjects = projects?.slice(0, 4);
+
+  const navigateToProjectsPage = () => {
+    navigate('/projects');
+  };
 
   return (
     <div className="py-8 px-4">
@@ -119,17 +117,28 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         projects
       </h1>
       <div className="max-w-2xl">
-        {projects?.map((project) => (
+        {displayedProjects?.map((project) => (
           <ProjectItem
             key={project.id}
             title={project.title}
-            link={project.projectLink || "#"}
-            logo={project.projectLogo || "/default.png"}
-            description={project.description}
-            preview={project.projectMedia || "/default.png"}
+            link={project.link || "#"}
+            logo={project.previewImageUrl || "/default.png"}
+            description={project.description || ""}
+            preview={project.previewImageUrl || "/default.png"}
+            id={project.id}
           />
         ))}
+        
+        {projects && projects.length > 3 && (
+          <button
+            onClick={navigateToProjectsPage}
+            className="mt-4 text-[var(--link)] hover:underline text-sm font-medium"
+          >
+            Show all projects
+          </button>
+        )}
       </div>
+    
     </div>
   );
 };

@@ -6,14 +6,16 @@ function RootPage() {
   const { getAllDetailsWithTemplate } = usePortfolio();
   const { data: portfolioData } = getAllDetailsWithTemplate();
 
-  // const templateName = portfolioData?.template?.name;
-  const templateName = "template-04";
+  const templateName = portfolioData?.template?.name;
+  // const templateName = "template-04";
 
   switch (templateName) {
     case "template-03":
       return <RootPage03 />;
      case "template-04":
       return <RootPage04 />;
+
+    
     default:
       return (
         <div className="flex items-center justify-center py-20 text-red-500 font-semibold">

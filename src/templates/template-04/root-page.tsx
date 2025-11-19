@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { usePortfolio } from "@/context/PortfolioContext";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-// import Card from "./components/Card";
 import { ThemeProvider } from "./components/theme-provider";
 import Projects from "./components/Projects";
 import Work from "./components/Work";
+
 
 function RootPage04() {
   const { getAllDetailsWithTemplate } = usePortfolio();
@@ -73,50 +73,44 @@ function RootPage04() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="dakshi-theme">
       <div className="min-h-screen p-0 font-[family-name:var(--font-geist-sans)]">
-        {/* <div
-          className="card-wrapper mr-10 hidden lg:block"
-          style={{ height: cardHeight, position: "absolute", top: 0, right: 0 }}
-        >
-          <Card />
-        </div> */}
-
         {/* Main content area */}
         <div className="relative">
-          {/* Header with higher z-index to appear above card */}
-          <header className="relative z-20 " ref={headerRef}>
-            <Header portfolioData={portfolioData} />
-          </header>
+          {/* Vertical separators like itsmehi */}
+          <div className="absolute left-15 -top-20 bottom-0 border-l border-dotted border-[var(--border)] border-opacity-40 h-full overflow-hidden"></div>
+          <div className="absolute right-15 -top-20 bottom-0 border-l border-dotted border-[var(--border)] border-opacity-40 h-full overflow-hidden"></div>
+          
+          <div className="px-[60px]">
+            {/* Header */}
+            <header className="relative" ref={headerRef}>
+              <Header portfolioData={portfolioData} />
+            </header>
 
-          {/* Hero section with lower z-index to appear below card */}
-          <div className="hero-section relative z-0" ref={heroRef} id="hero">
-            <Hero portfolioData={portfolioData} />
+            {/* Hero section */}
+            <div className="hero-section relative" ref={heroRef} id="hero">
+              <Hero portfolioData={portfolioData} />
+            </div>
+            <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
+
+            {/* Content after hero section */}
+            <div
+              className="relative min-h-[50vh] w-full"
+              ref={projectsRef}
+              id="projects"
+            >
+              <Projects projects={portfolioData.projects} />
+            </div>
+
+            <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
+            <div
+              className="relative min-h-[50vh] w-full"
+              ref={workRef}
+              id="work"
+            >
+              <Work experiences={portfolioData.experience} />
+            </div>
+
+            <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
           </div>
-          <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
-
-          {/* Content after hero section */}
-          <div
-            className="relative min-h-[50vh] w-full z-0"
-            ref={projectsRef}
-            id="projects"
-          >
-            <Projects projects={portfolioData.projects} />
-          </div>
-
-          <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
-          <div
-            className="relative min-h-[50vh] w-full z-0"
-            ref={workRef}
-            id="work"
-          >
-            <Work experiences={portfolioData.experience} />
-          </div>
-
-          <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
-         
-
-          <hr className="border-t relative w-screen left-[50%] right-[50%] -translate-x-[50%] my-8" />
-         
-         
         </div>
       </div>
     </ThemeProvider>

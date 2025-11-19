@@ -106,22 +106,7 @@ function Header({ portfolioData }: HeaderProps) {
                 work
               </button>
             </li>
-            <li>
-              <button
-                onClick={() => scrollToSection("moments")}
-                className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
-              >
-                moments
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => scrollToSection("newsletter")}
-                className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
-              >
-                newsletter
-              </button>
-            </li>
+            
           </ul>
 
           {/* Theme Toggle */}

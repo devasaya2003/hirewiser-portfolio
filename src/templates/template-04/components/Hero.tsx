@@ -72,6 +72,15 @@ interface SocialLinkProps {
 }
 
 const SocialLink: React.FC<SocialLinkProps> = ({ href, label }) => {
+  // Determine which icon to use based on URL
+  const getIcon = (url: string) => {
+    if (url.includes('github')) return <Github className="w-4 h-4 mr-1" />;
+    if (url.includes('twitter') || url.includes('x.com')) return <Twitter className="w-4 h-4 mr-1" />;
+    if (url.includes('linkedin')) return <Linkedin className="w-4 h-4 mr-1" />;
+    if (url.includes('mailto:') || url.includes('mail')) return <Mail className="w-4 h-4 mr-1" />;
+    return <ExternalLink className="w-4 h-4 mr-1" />;
+  };
+
   return (
     <a
       href={href}
@@ -79,48 +88,9 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, label }) => {
       target="_blank"
       rel="noopener noreferrer"
     >
+      {getIcon(href)}
       {label}
-      <svg
-        className="w-3 h-3 ml-0.5"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <line x1="7" y1="17" x2="17" y2="7"></line>
-        <polyline points="7 7 17 7 17 17"></polyline>
-      </svg>
     </a>
-  );
-};
-
-interface ProjectLinkProps {
-  href: string;
-  name: string;
-  description: string;
-}
-
-const ProjectLink: React.FC<ProjectLinkProps> = ({
-  href,
-  name,
-  description,
-}) => {
-  return (
-    <div className="mb-1">
-      <a
-        href={href}
-        className="text-[var(--link)] hover:underline"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {name}
-      </a>
-      <span className="text-xs text-[var(--muted-foreground)] ml-1">
-        — {description}
-      </span>
-    </div>
   );
 };
 
@@ -170,42 +140,35 @@ const Hero: React.FC<HeroProps> = ({ portfolioData }) => {
   return (
     <div className="py-8 px-4">
       <h1 className="text-3xl font-bold mb-6 text-[var(--foreground)]">
-        hi, i&apos;m {portfolioData.firstName.toLowerCase()}.
+        hi, i&apos;m {portfolioData.firstName?.toLowerCase() || ""}.
       </h1>
       <div className="max-w-2xl">
         <p className="mb-4 text-base text-[var(--foreground)]">
           {portfolioData.headerText || "i build things on the internet."}
         </p>
 
-        <p className="mb-8 text-base text-[var(--foreground)]">
-          {portfolioData.skillset?.slice(0, 4).map((skill, index) => (
-            <span key={skill.id}>
-              <LinkWithTooltip
-                text={skill.name.toLowerCase()}
-                description={skill.description || skill.name}
-              />
-              {index < (portfolioData.skillset?.slice(0, 4).length || 0) - 1 && ", "}
-            </span>
-          ))} — whatever gets the job done.
-        </p>
+      
 
-        <p className="mb-4 text-base text-[var(--foreground)]">
-          {portfolioData.description}
+        <p className="mb-4 text-base text-[var(--foreground)] whitespace-pre-line">
+          {portfolioData.description ? (() => {
+            // Function to split text after every 2 periods
+            const formatDescription = (text: string) => {
+              const parts = text.split('. ');
+              const result = [];
+              
+              for (let i = 0; i < parts.length; i += 2) {
+                const chunk = parts.slice(i, i + 2).join('. ').trim();
+                if (chunk) {
+                  result.push(chunk);
+                }
+              }
+              
+              return result.join('\n\n');
+            };
+            
+            return formatDescription(portfolioData.description);
+          })() : ''}
         </p>
-
-        <div className="mb-8">
-          <p className="text-sm text-[var(--muted-foreground)] mb-2">projects</p>
-          <div className="space-y-1">
-            {portfolioData.projects?.slice(0, 3).map((project) => (
-              <ProjectLink
-                key={project.id}
-                href={project.projectLink || "#"}
-                name={project.title}
-                description={project.description}
-              />
-            ))}
-          </div>
-        </div>
 
         <div className="mb-8">
           <p className="text-sm text-[var(--muted-foreground)] mb-2">
@@ -221,31 +184,9 @@ const Hero: React.FC<HeroProps> = ({ portfolioData }) => {
             ))}
           </div>
         </div>
-
-        <div>
-          <p className="text-sm text-[var(--muted-foreground)] mb-2">
-            listening to
-          </p>
-          <div className="flex flex-wrap gap-x-4 gap-y-2">
-            <SongLink
-              href="#"
-              title="Blinding Lights"
-              artist="The Weeknd"
-            />
-            <SongLink
-              href="#"
-              title="Levitating"
-              artist="Dua Lipa"
-            />
-            <SongLink
-              href="#"
-              title="Stay"
-              artist="The Kid LAROI & Justin Bieber"
-            />
-          </div>
-        </div>
-        <SocialLink href="https://duckwhocodes.hashnode.dev/" label="Blog" />
       </div>
+      
+     
     </div>
   );
 };
