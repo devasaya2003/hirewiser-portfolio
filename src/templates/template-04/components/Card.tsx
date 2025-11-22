@@ -25,13 +25,6 @@ import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
-declare module "@react-three/fiber" {
-  type ThreeElements = {
-    meshLineGeometry: any;
-    meshLineMaterial: any;
-  };
-}
-
 interface ExtendedRigidBody extends RapierRigidBody {
   lerped?: THREE.Vector3;
 }

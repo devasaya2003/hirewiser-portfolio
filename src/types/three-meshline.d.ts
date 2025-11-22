@@ -1,21 +1,18 @@
-import "react";
-import type * as THREE from "three";
+import * as THREE from "three";
+import { ReactThreeFiber } from "@react-three/fiber";
 
-// Extend the ThreeElements interface to include meshLineGeometry and meshLineMaterial
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      meshLineGeometry: any;
+      meshLineMaterial: any;
+    }
+  }
+}
+
 declare module "@react-three/fiber" {
-  type ThreeElements = {
-    meshLineGeometry: {
-      attach?: string;
-      points?: THREE.Vector3[] | Float32Array;
-    };
-    meshLineMaterial: {
-      attach?: string;
-      lineWidth?: number;
-      color?: THREE.Color | string | number;
-      transparent?: boolean;
-      depthTest?: boolean;
-      resolution?: [number, number];
-      useMap?: boolean;
-    };
-  };
+  interface ThreeElements {
+    meshLineGeometry: any;
+    meshLineMaterial: any;
+  }
 }
