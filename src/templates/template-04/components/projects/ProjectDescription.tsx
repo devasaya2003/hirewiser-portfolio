@@ -2,10 +2,20 @@ type ProjectDescriptionProps = {
   description: string | null | undefined;
 };
 
+function stripHtml(html: string | null | undefined): string {
+  if (!html) {
+    return "";
+  }
+
+  return html.replace(/<[^>]*>?/gm, "");
+}
+
 export function ProjectDescription({ description }: ProjectDescriptionProps) {
   if (!description) {
     return null;
   }
+
+  const strippedDescription = stripHtml(description);
 
   return (
     <div className="space-y-4">
@@ -13,7 +23,7 @@ export function ProjectDescription({ description }: ProjectDescriptionProps) {
         About This Project
       </h2>
       <div className="text-[var(--muted-foreground)] whitespace-pre-line leading-relaxed">
-        {description}
+        {strippedDescription}
       </div>
     </div>
   );

@@ -4,6 +4,14 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Project } from "@/types/portfolio.types";
 
+function stripHtml(html: string | null | undefined): string {
+  if (!html) {
+    return "";
+  }
+
+  return html.replace(/<[^>]*>?/gm, "");
+}
+
 type ProjectsProps = {
   projects: Project[];
 };
@@ -28,6 +36,8 @@ const ProjectItem: React.FC<ProjectProps> = ({
   const imageRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
+
+  const strippedDescription = stripHtml(description);
 
   return (
     <div className="mb-8">
@@ -107,15 +117,15 @@ const ProjectItem: React.FC<ProjectProps> = ({
                     )}
                   </div>
                 )}
-                <p className="text-xs text-gray-200">{description}</p>
+                <p className="text-xs text-gray-200">{strippedDescription}</p>
                 <div className="absolute top-3 -left-2 w-4 h-4 bg-gray-900 border-l border-b border-gray-700 transform rotate-45" />
               </div>
             )}
           </span>
           <p className="text-sm text-[var(--muted-foreground)] mt-1">
-            {description.length > 85
-              ? `${description.substring(0, 85)}...`
-              : description}
+            {strippedDescription.length > 85
+              ? `${strippedDescription.substring(0, 85)}...`
+              : strippedDescription}
           </p>
         </div>
       </div>

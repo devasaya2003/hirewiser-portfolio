@@ -6,6 +6,14 @@ type ProjectCardProps = {
   project: any;
 };
 
+function stripHtml(html: string | null | undefined): string {
+  if (!html) {
+    return "";
+  }
+
+  return html.replace(/<[^>]*>?/gm, "");
+}
+
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const projectImage = project.previewImageUrl || "";
   const skills = project.projectSkillset || [];
@@ -65,10 +73,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     link.linkTitle?.toLowerCase().includes("github")
   );
 
+  const strippedDescription = stripHtml(project.description);
+
   const truncatedDesc =
-    project.description && project.description.length > 75
-      ? `${project.description.slice(0, 75)}...`
-      : project.description || "No description available.";
+    strippedDescription && strippedDescription.length > 75
+      ? `${strippedDescription.slice(0, 75)}...`
+      : strippedDescription || "No description available.";
 
   return (
     <div className="group overflow-hidden transition-all border border-[var(--border)] rounded-lg shadow-sm hover:shadow-md">

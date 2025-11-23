@@ -2,6 +2,7 @@ import type React from "react";
 
 import { Github, Twitter, Linkedin, Mail, ExternalLink } from "lucide-react";
 import type { GetUserPortfolioV3Response } from "@/types/portfolio.types";
+import parse from "html-react-parser";
 
 type SocialLinkProps = {
   href: string;
@@ -54,31 +55,31 @@ const Hero: React.FC<HeroProps> = ({ portfolioData }) => {
           {portfolioData.headerText || "i build things on the internet."}
         </p>
 
-        <p className="mb-4 text-base text-[var(--foreground)] whitespace-pre-line">
+        <div className="mb-4 text-base text-[var(--foreground)] whitespace-pre-line typography">
           {portfolioData.description
             ? (() => {
-                // Function to split text after every 2 periods
-                const formatDescription = (text: string) => {
-                  const parts = text.split(". ");
-                  const result: string[] = [];
+              // Function to split text after every 2 periods
+              // const formatDescription = (text: string) => {
+              //   const parts = text.split(". ");
+              //   const result: string[] = [];
 
-                  for (let i = 0; i < parts.length; i += 2) {
-                    const chunk = parts
-                      .slice(i, i + 2)
-                      .join(". ")
-                      .trim();
-                    if (chunk) {
-                      result.push(chunk);
-                    }
-                  }
+              //   for (let i = 0; i < parts.length; i += 2) {
+              //     const chunk = parts
+              //       .slice(i, i + 2)
+              //       .join(". ")
+              //       .trim();
+              //     if (chunk) {
+              //       result.push(chunk);
+              //     }
+              //   }
 
-                  return result.join("\n\n");
-                };
+              //   return result.join("\n\n");
+              // };
 
-                return formatDescription(portfolioData.description);
-              })()
+              return parse(portfolioData.description);
+            })()
             : ""}
-        </p>
+        </div>
 
         {portfolioData.links?.some((link) => link.linkUrl) && (
           <div className="mb-8">
