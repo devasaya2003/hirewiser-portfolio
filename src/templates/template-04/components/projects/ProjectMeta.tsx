@@ -44,10 +44,12 @@ export function ProjectMeta({
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-30 border border-[var(--border)] rounded-lg p-2 bg-[var(--muted)] max-w-2xl">
+    <div className="flex flex-wrap items-center gap-8 border border-[var(--border)] rounded-lg p-2 bg-[var(--muted)] max-w-2xl">
       {timeline && (
         <div className="flex items-center gap-2">
-          <h4 className="font-semibold text-[var(--foreground)]">Timeline:</h4>
+          <h4 className="ml-2 font-semibold text-[var(--foreground)]">
+            Timeline:
+          </h4>
           <p className="text-[var(--muted-foreground)]">{timeline}</p>
         </div>
       )}

@@ -12,12 +12,12 @@ const SkillButton: React.FC<SkillButtonProps> = ({ name, icon }) => {
     <button
       type="button"
       className={`
-        group relative px-4 py-2.5 rounded-lg border 
+        group relative px-3.5 py-2 rounded-lg border 
         border-[var(--border)] bg-[var(--muted)]
         hover:border-[var(--primary)] hover:bg-[var(--primary)]/20
         transition-all duration-300 ease-in-out
         flex items-center gap-2.5
-        hover:scale-105 hover:shadow-lg
+        hover:scale-[1.03]
       `}
     >
       {icon && (
@@ -25,8 +25,8 @@ const SkillButton: React.FC<SkillButtonProps> = ({ name, icon }) => {
           <img
             src={icon}
             alt={`${name} icon`}
-            width={20}
-            height={20}
+            width={18}
+            height={18}
             className="w-full h-full object-contain"
             onError={(e) => {
               // Fallback to text if image fails to load
@@ -35,7 +35,7 @@ const SkillButton: React.FC<SkillButtonProps> = ({ name, icon }) => {
           />
         </div>
       )}
-      <span className="text-sm font-medium text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+      <span className="text-xs font-medium text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
         {name}
       </span>
     </button>

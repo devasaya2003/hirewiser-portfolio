@@ -7,6 +7,7 @@ import Work from "./components/Work";
 import Skills from "./components/Skills";
 import ContactSection from "./components/ContactSection";
 import Card from "./components/Card";
+import GitHubContributions from "./components/GitHubContributions";
 import Footer from "./components/Footer";
 
 function RootPage04() {
@@ -79,18 +80,30 @@ function RootPage04() {
                 <div className="w-screen -ml-[60px] border-t border-[var(--border)] my-8 -mt-7" />
 
                 {/* Skills section */}
-                <div id="skills" className="-mb-8">
+                <div id="skills" className="mb-12">
                   <Skills skillset={portfolioData.skillset} />
                 </div>
               </div>
 
-              {/* Right Column - Sticky Card */}
-              <div className="hidden lg:block w-1/2 sticky top-0 h-screen">
-                <div className="w-full h-full flex items-center justify-center pl-4">
-                  <div className="w-full max-w-md">
+              {/* Right Column - Sticky Card and GitHub Contributions */}
+              <div className="hidden lg:flex w-1/2 flex-col relative">
+                <div className="sticky top-0 h-screen w-full pointer-events-none">
+                  <div className="w-full max-w-md mx-auto px-4  space-y-8 pointer-events-auto">
                     <Card portfolioData={portfolioData} />
                   </div>
                 </div>
+
+                {portfolioData.userName && (
+                  <div className="w-full px-4 pb-20 mt-auto relative z-10 mb-12">
+                    <GitHubContributions
+                      githubUsername={
+                        portfolioData.links?.find(
+                          (l) => l.linkTitle?.toLowerCase() === "github"
+                        )?.linkUrl || portfolioData.userName
+                      }
+                    />
+                  </div>
+                )}
               </div>
             </div>
 
@@ -105,8 +118,9 @@ function RootPage04() {
               <div className="w-full max-w-3xl">
                 <ContactSection
                   profileImage={portfolioData.profileImage || undefined}
-                  name={`${portfolioData.firstName} ${portfolioData.lastName || ""
-                    }`}
+                  name={`${portfolioData.firstName} ${
+                    portfolioData.lastName || ""
+                  }`}
                   initials={
                     portfolioData.firstName[0] +
                     (portfolioData.lastName?.[0] || "")
@@ -122,10 +136,9 @@ function RootPage04() {
                     }
                     return portfolioData.userName;
                   })()}
-                  isCalcomEnabled={true}
+                  integrationsEnabled={true}
                 />
               </div>
-
             </div>
           </div>
         </div>
