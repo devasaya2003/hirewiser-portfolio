@@ -69,7 +69,7 @@ export default function GitHubContributions({
             <div className="w-full">
               <GitHubCalendar
                 username={cleanUsername ?? ""}
-                colorScheme="dark"
+                colorScheme="light"
                 blockSize={9}
                 blockMargin={3}
                 fontSize={12}
@@ -77,8 +77,15 @@ export default function GitHubContributions({
                 hideColorLegend={false}
                 hideMonthLabels={false}
                 theme={{
+                  light: [
+                    "#ebedf0",  // Lighter gray for empty blocks
+                    "#9be9a8",
+                    "#40c463",
+                    "#30a14e",
+                    "#216e39",
+                  ],
                   dark: [
-                    "#333", // Lighter gray for empty blocks
+                    "#333",
                     "#0e4429",
                     "#006d32",
                     "#26a641",

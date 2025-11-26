@@ -1,6 +1,7 @@
 import type React from "react";
 import { Link } from "react-router-dom";
 import { ExternalLink, Github } from "lucide-react";
+import type { ProjectSkillset } from "@/types/portfolio.types";
 
 type ProjectCardProps = {
   project: any;
@@ -102,7 +103,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           const randomIndex =
             project.title
               .split("")
-              .reduce((acc, char) => acc + char.charCodeAt(0), 0) %
+              .reduce((acc: number, char: string) => acc + char.charCodeAt(0), 0) %
             gradients.length;
 
           return (
@@ -168,7 +169,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           {skills.length > 0 ? (
             <div className="space-y-3">
               <div className="flex flex-wrap gap-2">
-                {skills.slice(0, 2).map((skillset) => (
+                {skills.slice(0, 2).map((skillset: ProjectSkillset) => (
                   <span
                     key={skillset.id}
                     className="inline-flex items-center text-xs bg-[var(--muted)] border border-[var(--border)] py-1 px-2 rounded-md text-[var(--foreground)]"
