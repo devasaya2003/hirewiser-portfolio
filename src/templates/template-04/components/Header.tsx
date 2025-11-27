@@ -114,31 +114,48 @@ function Header({ portfolioData }: HeaderProps) {
             </li>
           </ul>
 
-          {/* Theme Toggle */}
+          {/* Mobile Controls */}
+          <div className="flex items-center sm:hidden gap-1">
+            {/* Theme Toggle - Mobile */}
+            <button
+              type="button"
+              onClick={handleThemeChange}
+              className="p-2 rounded-md hover:bg-[var(--accent)] transition-colors mb-6"
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? (
+                <Moon className="h-[18px] w-[18px] text-[var(--muted-foreground)]" />
+              ) : (
+                <Sun className="h-[18px] w-[18px] text-[var(--muted-foreground)]" />
+              )}
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-md hover:bg-[var(--accent)] transition-colors mb-6"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? (
+                <X className="h-[18px] w-[18px] text-[var(--muted-foreground)]" />
+              ) : (
+                <Menu className="h-[18px] w-[18px] text-[var(--muted-foreground)]" />
+              )}
+            </button>
+          </div>
+
+          {/* Desktop Theme Toggle */}
           <button
             type="button"
             onClick={handleThemeChange}
-            className="p-2 mb-6 rounded-md bg-transparent hover:bg-[var(--accent)] transition-colors"
+            className="hidden sm:block p-2 rounded-md hover:bg-[var(--accent)] transition-colors mb-5"
             aria-label="Toggle theme"
           >
             {theme === "light" ? (
               <Moon className="h-[18px] w-[18px] text-[var(--muted-foreground)]" />
             ) : (
               <Sun className="h-[18px] w-[18px] text-[var(--muted-foreground)]" />
-            )}
-          </button>
-
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="sm:hidden p-2 rounded-md hover:bg-[var(--accent)] transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? (
-              <X className="h-[18px] w-[18px] text-[var(--muted-foreground)]" />
-            ) : (
-              <Menu className="h-[18px] w-[18px] text-[var(--muted-foreground)]" />
             )}
           </button>
         </div>

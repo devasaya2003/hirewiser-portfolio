@@ -58,18 +58,20 @@ function ProjectsPage04() {
             <Header portfolioData={portfolioData} />
           </div>
 
-          <div className="max-w-6xl mx-auto py-10">
-            <BackButton
-              to="/"
-              className="mb-6 px-4 py-2 rounded-lg backdrop-blur-xl bg-white/10 hover:bg-white/20 border border-white/10 shadow-lg transition-all duration-300"
-              label="Back to Home"
-            />
-            <h1 className="text-4xl font-bold text-[var(--foreground)] mb-2">
-              All Projects
-            </h1>
-            <p className="text-[var(--muted-foreground)] mb-8">
-              Explore my complete portfolio of projects
-            </p>
+          <div className="max-w-6xl mx-auto py-6 sm:py-10 px-4 sm:px-0">
+            <div className="text-center sm:text-left">
+              <BackButton
+                to="/"
+                className="mb-6 px-4 py-2 rounded-lg backdrop-blur-xl bg-white/10 hover:bg-white/20 border border-white/10 shadow-lg transition-all duration-300 mx-auto sm:mx-0 inline-flex items-center"
+                label="Back to Home"
+              />
+              <h1 className="text-3xl sm:text-4xl font-bold text-[var(--foreground)] mb-2">
+                All Projects
+              </h1>
+              <p className="text-[var(--muted-foreground)] mb-8">
+                Explore my complete portfolio of projects
+              </p>
+            </div>
 
             <ProjectsList projects={projectsData} />
           </div>

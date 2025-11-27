@@ -70,7 +70,6 @@ class ErrorBoundary extends React.Component<
 
 export function ProjectDetailsCard({
   project,
-  relatedProjects = [],
 }: ProjectDetailsCardProps) {
   // Ensure project is defined
   if (!project) {
@@ -133,10 +132,8 @@ export function ProjectDetailsCard({
         {/* Tech Stack */}
         <ProjectTechStack technologies={technologies} />
 
-        {/* Related Projects */}
-        {relatedProjects && relatedProjects.length > 0 && (
-          <RelatedProjects projects={relatedProjects} />
-        )}
+
+
       </div>
     </ErrorBoundary>
   );

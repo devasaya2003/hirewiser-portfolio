@@ -8,7 +8,6 @@ function ProjectsPage() {
 
   const templateName = portfolioData?.template?.name;
 
-
   switch (templateName) {
     case "template-03":
       return <ProjectsPage03 />;
