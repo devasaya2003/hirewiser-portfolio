@@ -10,6 +10,7 @@ import Card from "./components/Card";
 import GitHubContributions from "./components/GitHubContributions";
 import Footer from "./components/Footer";
 
+const CAL_COM_PATTERN = /cal\.com\/(.+)/;
 function RootPage04() {
   const { getAllDetailsWithTemplate } = usePortfolio();
   const { data: portfolioData, isLoading, error } = getAllDetailsWithTemplate();
@@ -39,11 +40,11 @@ function RootPage04() {
         {/* Main content area */}
         <div className="relative">
           {/* Side separators - full height */}
-          <div className="fixed left-0 top-0 bottom-0 w-[60px] border-r border-dotted border-[var(--border)] border-opacity-40 h-screen pointer-events-none" />
+          <div className="fixed left-0 top-0 bottom-0 w-4 sm:w-[60px] border-r border-dotted border-[var(--border)] border-opacity-40 h-screen pointer-events-none" />
 
-          <div className="fixed right-0 top-0 bottom-0 w-[60px] border-l border-dotted border-[var(--border)] border-opacity-40 h-screen pointer-events-none" />
+          <div className="fixed right-0 top-0 bottom-0 w-4 sm:w-[60px] border-l border-dotted border-[var(--border)] border-opacity-40 h-screen pointer-events-none" />
 
-          <div className="px-[60px]">
+          <div className="px-4 sm:px-[60px]">
             {/* Header - Full Width */}
             <header className="relative pt-8 pr-2">
               <Header portfolioData={portfolioData} />
@@ -51,14 +52,20 @@ function RootPage04() {
 
             <div className="relative flex">
               {/* Left Column - Scrollable Content */}
-              <div className="w-full lg:w-1/2 lg:pr-12 lg:border-r border-dashed border-[var(--border)] border-opacity-40 min-h-screen pb-20">
+              <div className="w-full lg:w-1/2 lg:pr-12 lg:border-r border-dashed border-[var(--border)] border-opacity-40 min-h-screen pb-20 mb-10">
                 {/* Hero section */}
                 <div className="hero-section relative mb-12" id="hero">
                   <Hero portfolioData={portfolioData} />
                 </div>
 
                 {/* Full width separator */}
-                <div className="w-screen -ml-[60px] border-t border-[var(--border)] my-8 -mt-10" />
+                <div
+                  className="absolute left-0 right-0 w-screen border-t border-[var(--border)] my-8 -mt-10"
+                  style={{
+                    marginLeft: "calc(-50vw + 50%)",
+                    marginRight: "calc(-50vw + 50%)",
+                  }}
+                />
 
                 {/* Projects section */}
                 <div
@@ -69,7 +76,13 @@ function RootPage04() {
                 </div>
 
                 {/* Full width separator */}
-                <div className="w-screen -ml-[60px] border-t border-[var(--border)] my-8 -mt-10" />
+                <div
+                  className="absolute left-0 right-0 w-screen border-t border-[var(--border)] my-8 -mt-10"
+                  style={{
+                    marginLeft: "calc(-50vw + 50%)",
+                    marginRight: "calc(-50vw + 50%)",
+                  }}
+                />
 
                 {/* Work section */}
                 <div id="work">
@@ -77,10 +90,16 @@ function RootPage04() {
                 </div>
 
                 {/* Full width separator */}
-                <div className="w-screen -ml-[60px] border-t border-[var(--border)] my-8 -mt-7" />
+                <div
+                  className="absolute left-0 right-0 w-screen border-t border-[var(--border)] my-8 -mt-10"
+                  style={{
+                    marginLeft: "calc(-50vw + 50%)",
+                    marginRight: "calc(-50vw + 50%)",
+                  }}
+                />
 
                 {/* Skills section */}
-                <div id="skills" className="mb-12">
+                <div id="skills" className="-mb-10">
                   <Skills skillset={portfolioData.skillset} />
                 </div>
               </div>
@@ -89,12 +108,19 @@ function RootPage04() {
               <div className="hidden lg:flex w-1/2 flex-col relative">
                 <div className="sticky top-0 h-screen w-full pointer-events-none">
                   <div className="w-full max-w-md mx-auto px-4  space-y-8 pointer-events-auto">
-                    <Card portfolioData={portfolioData} />
+                    <Card
+                      portfolioData={{
+                        firstName: portfolioData.firstName,
+                        lastName: portfolioData.lastName || undefined,
+                        profileImage: portfolioData.profileImage || undefined,
+                        headerText: portfolioData.headerText || undefined,
+                      }}
+                    />
                   </div>
                 </div>
 
                 {portfolioData.userName && (
-                  <div className="w-full px-4 pb-20 mt-auto relative z-10 mb-12">
+                  <div className="w-full px-4 pb-20 mt-auto relative z-10">
                     <GitHubContributions
                       githubUsername={
                         portfolioData.links?.find(
@@ -108,18 +134,22 @@ function RootPage04() {
             </div>
 
             {/* Full width separator with vertical line */}
-            <div className="relative w-screen -ml-[60px] my-8 -mt-1">
-              <div className="border-t border-[var(--border)]" />
-              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[var(--border)] -translate-x-1/2" />
-            </div>
+            <div
+              className="absolute left-0 right-0 w-screen border-t border-[var(--border)] my-8 -mt-10"
+              style={{
+                marginLeft: "calc(-50vw + 50%)",
+                marginRight: "calc(-50vw + 50%)",
+              }}
+            />
 
             {/* Contact section */}
             <div id="contact" className="flex justify-center w-full -mt-2 ">
               <div className="w-full max-w-3xl">
                 <ContactSection
                   profileImage={portfolioData.profileImage || undefined}
-                  name={`${portfolioData.firstName} ${portfolioData.lastName || ""
-                    }`}
+                  name={`${portfolioData.firstName} ${
+                    portfolioData.lastName || ""
+                  }`}
                   initials={
                     portfolioData.firstName[0] +
                     (portfolioData.lastName?.[0] || "")
@@ -130,7 +160,7 @@ function RootPage04() {
                     );
                     if (calLinkObj) {
                       // Extract the path after cal.com/
-                      const match = calLinkObj.linkUrl.match(/cal\.com\/(.+)/);
+                      const match = calLinkObj.linkUrl.match(CAL_COM_PATTERN);
                       return match ? match[1] : portfolioData.userName;
                     }
                     return portfolioData.userName;
@@ -141,7 +171,7 @@ function RootPage04() {
             </div>
           </div>
         </div>
-        <div className="mt-auto">
+        <div className="mt-auto py-6">
           <Footer />
         </div>
       </div>

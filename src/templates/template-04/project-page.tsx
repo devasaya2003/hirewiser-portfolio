@@ -13,17 +13,37 @@ function ProjectPage04() {
 
   // Get email and all projects from portfolio context
   const { getAllDetailsWithTemplate } = usePortfolio();
-  const { data: portfolioData } = getAllDetailsWithTemplate();
+  const { data: portfolioData, isLoading } = getAllDetailsWithTemplate();
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  if (isLoading) {
+    return (
+      <ThemeProvider defaultTheme="system" storageKey="dakshi-theme">
+        <div className="min-h-screen w-full flex items-center justify-center">
+          <p>Loading...</p>
+        </div>
+      </ThemeProvider>
+    );
+  }
+
+  if (!portfolioData) {
+    return (
+      <ThemeProvider defaultTheme="system" storageKey="dakshi-theme">
+        <div className="min-h-screen w-full flex items-center justify-center">
+          <p className="text-red-500">Failed to load portfolio data.</p>
+        </div>
+      </ThemeProvider>
+    );
+  }
+
   if (!projectData) {
     return (
       <ThemeProvider defaultTheme="system" storageKey="dakshi-theme">
-        <div className="min-h-screen w-full bg-[var(--background)] relative overflow-hidden font-[family-name:var(--font-geist-sans)]">
+        <div className="min-h-screen w-full relative overflow-hidden font-[family-name:var(--font-geist-sans)]">
           <Header portfolioData={portfolioData} />
           <div className="max-w-4xl mx-auto py-20 text-center">
             <p className="text-red-500 font-semibold">Project not found.</p>
@@ -46,20 +66,20 @@ function ProjectPage04() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="dakshi-theme">
       <div className="min-h-screen w-full bg-[var(--background)] relative overflow-hidden font-[family-name:var(--font-geist-sans)]">
-        {/* Vertical separators like itsmehi */}
-        <div className="absolute left-15 top-0 bottom-0 border-l border-dotted border-[var(--border)] border-opacity-40 h-full overflow-hidden" />
-        <div className="absolute right-15 top-0 bottom-0 border-l border-dotted border-[var(--border)] border-opacity-40 h-full overflow-hidden" />
+        {/* Vertical separators with balanced padding */}
+        <div className="absolute left-6 md:left-16 top-0 bottom-0 border-l border-dotted border-[var(--border)] border-opacity-40 h-full overflow-hidden" />
+        <div className="absolute right-6 md:right-16 top-0 bottom-0 border-l border-dotted border-[var(--border)] border-opacity-40 h-full overflow-hidden" />
 
-        <div className="px-[34px] pt-7">
-          <div className="px-8">
+        <div className="px-4 sm:px-[34px] pt-7">
+          <div className="px-4 sm:px-8">
             <Header portfolioData={portfolioData} />
           </div>
 
-          <div className="max-w-6xl mx-auto py-10 ml-12">
+          <div className="max-w-6xl mx-auto py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
             <button
               type="button"
               onClick={goBack}
-              className="flex items-center mb-6 px-4 py-2 rounded-lg backdrop-blur-xl bg-white/10 hover:bg-white/20 border border-white/10 shadow-lg transition-all duration-300"
+              className="flex items-center mb-6 px-4 py-2 rounded-lg backdrop-blur-xl hover:bg-white/20 border border-white/10 shadow-lg transition-all duration-300"
             >
               <ArrowLeft className="w-4 h-4 mr-2" /> Back to Projects
             </button>

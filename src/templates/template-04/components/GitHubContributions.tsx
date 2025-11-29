@@ -17,7 +17,7 @@ export default function GitHubContributions({
     isIntegrationEnabled && isGitHubEnabled && Boolean(githubUsername);
 
   // Determine color scheme based on theme
-  const colorScheme = theme === 'dark' ? 'dark' : 'light';
+  const colorScheme = theme === "dark" ? "dark" : "light";
 
   if (!isEnabled) {
     return null;
@@ -25,7 +25,9 @@ export default function GitHubContributions({
 
   // Defensive: Extract username if a URL is passed
   const cleanUsername = (() => {
-    if (!githubUsername) { return ""; }
+    if (!githubUsername) {
+      return "";
+    }
     try {
       if (
         githubUsername.includes("http") ||
@@ -72,7 +74,7 @@ export default function GitHubContributions({
         <div className="relative bg-background/50 backdrop-blur-sm rounded-lg border border-dashed dark:border-white/10 border-black/20 p-6 flex justify-center">
           <div className="w-full flex justify-center">
             <div className="w-full">
-              <div className={theme === 'dark' ? 'dark' : ''}>
+              <div className={theme === "dark" ? "dark" : ""}>
                 <GitHubCalendar
                   username={cleanUsername ?? ""}
                   colorScheme={colorScheme}
@@ -84,14 +86,14 @@ export default function GitHubContributions({
                   hideMonthLabels={false}
                   theme={{
                     light: [
-                      "#ebedf0",  // Light gray for empty blocks in light mode
+                      "#ebedf0", // Light gray for empty blocks in light mode
                       "#9be9a8",
                       "#40c463",
                       "#30a14e",
                       "#216e39",
                     ],
                     dark: [
-                      "#1a1a1a",  // Dark for empty blocks in dark mode
+                      "#1a1a1a", // Dark for empty blocks in dark mode
                       "#0e4429",
                       "#006d32",
                       "#26a641",

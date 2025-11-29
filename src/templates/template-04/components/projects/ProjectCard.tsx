@@ -103,8 +103,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           const randomIndex =
             project.title
               .split("")
-              .reduce((acc: number, char: string) => acc + char.charCodeAt(0), 0) %
-            gradients.length;
+              .reduce(
+                (acc: number, char: string) => acc + char.charCodeAt(0),
+                0
+              ) % gradients.length;
 
           return (
             <div className={`absolute inset-0 ${gradients[randomIndex]}`} />

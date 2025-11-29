@@ -58,26 +58,26 @@ const Hero: React.FC<HeroProps> = ({ portfolioData }) => {
         <div className="mb-4 text-base text-[var(--foreground)] whitespace-pre-line typography">
           {portfolioData.description
             ? (() => {
-              // Function to split text after every 2 periods
-              // const formatDescription = (text: string) => {
-              //   const parts = text.split(". ");
-              //   const result: string[] = [];
+                // Function to split text after every 2 periods
+                // const formatDescription = (text: string) => {
+                //   const parts = text.split(". ");
+                //   const result: string[] = [];
 
-              //   for (let i = 0; i < parts.length; i += 2) {
-              //     const chunk = parts
-              //       .slice(i, i + 2)
-              //       .join(". ")
-              //       .trim();
-              //     if (chunk) {
-              //       result.push(chunk);
-              //     }
-              //   }
+                //   for (let i = 0; i < parts.length; i += 2) {
+                //     const chunk = parts
+                //       .slice(i, i + 2)
+                //       .join(". ")
+                //       .trim();
+                //     if (chunk) {
+                //       result.push(chunk);
+                //     }
+                //   }
 
-              //   return result.join("\n\n");
-              // };
+                //   return result.join("\n\n");
+                // };
 
-              return parse(portfolioData.description);
-            })()
+                return parse(portfolioData.description);
+              })()
             : ""}
         </div>
 

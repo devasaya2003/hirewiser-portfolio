@@ -1,7 +1,7 @@
 export function stripHtml(html: string | null | undefined): string {
-    if (!html) {
-        return "";
-    }
+  if (!html) {
+    return "";
+  }
 
-    return html.replace(/<[^>]*>?/gm, "");
+  return html.replace(/<[^>]*>?/gm, "");
 }

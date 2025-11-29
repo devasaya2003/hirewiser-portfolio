@@ -1,8 +1,8 @@
 type ProjectMetaProps = {
-  timeline?: string;
-  role?: string;
-  team?: string;
-  status?: string;
+  timeline?: string | null;
+  role?: string | null;
+  team?: string | null;
+  status?: string | null;
 };
 
 export function ProjectMeta({
@@ -38,8 +38,12 @@ export function ProjectMeta({
 
   const statusStyles = getStatusStyles(status || "In Progress");
 
-  // Return null if no data to display
-  if (!(timeline || role || team || status)) {
+  // Filter out null/undefined values
+  const hasData = [timeline, role, team, status].some(
+    (val) => val != null && val.trim() !== ""
+  );
+
+  if (!hasData) {
     return null;
   }
 

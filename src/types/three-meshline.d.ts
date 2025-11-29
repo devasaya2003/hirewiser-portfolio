@@ -7,4 +7,3 @@ declare module "@react-three/fiber" {
     meshLineMaterial: MaterialNode<MeshLineMaterial, typeof MeshLineMaterial>;
   }
 }
-

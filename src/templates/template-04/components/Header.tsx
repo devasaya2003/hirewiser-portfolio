@@ -5,7 +5,7 @@ import { useTheme } from "./theme-provider";
 import type { GetUserPortfolioV3Response } from "@/types/portfolio.types";
 
 type HeaderProps = {
-  portfolioData: GetUserPortfolioV3Response;
+  portfolioData?: GetUserPortfolioV3Response;
 };
 
 function Header({ portfolioData }: HeaderProps) {
@@ -78,7 +78,9 @@ function Header({ portfolioData }: HeaderProps) {
             to="/"
             className="mb-6 ml-2 text-base text-[var(--primary)] hover:underline"
           >
-            {`${portfolioData.firstName} ${portfolioData.lastName || ""}`.trim()}
+            {portfolioData
+              ? `${portfolioData.firstName} ${portfolioData.lastName || ""}`.trim()
+              : "Portfolio"}
           </Link>
         </div>
 

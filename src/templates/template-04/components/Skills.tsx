@@ -22,17 +22,23 @@ const SkillButton: React.FC<SkillButtonProps> = ({ name, icon }) => {
     >
       {icon && (
         <div className="w-5 h-5 flex items-center justify-center">
-          <img
-            src={icon}
-            alt={`${name} icon`}
-            width={15}
-            height={15}
-            className="mb-0.5 object-contain"
+          <div
             onError={(e) => {
               // Fallback to text if image fails to load
-              e.currentTarget.style.display = "none";
+              const img = e.currentTarget.querySelector("img");
+              if (img) {
+                img.style.display = "none";
+              }
             }}
-          />
+          >
+            <img
+              src={icon}
+              alt={`${name} icon`}
+              width={15}
+              height={15}
+              className="mb-0.5 object-contain"
+            />
+          </div>
         </div>
       )}
       <span className="text-xs font-bold text-black dark:text-white transition-colors">

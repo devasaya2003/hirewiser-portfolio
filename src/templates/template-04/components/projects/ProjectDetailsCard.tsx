@@ -3,6 +3,7 @@ import { ProjectDescription } from "./ProjectDescription";
 import { ProjectLinks } from "./ProjectLinks";
 import { ProjectTechStack } from "./ProjectTechStack";
 import { ProjectMeta } from "./ProjectMeta";
+import type { Project as PortfolioProject } from "@/types/portfolio.types";
 
 type ProjectLink = {
   id: string;
@@ -18,18 +19,9 @@ type ProjectSkill = {
   };
 };
 
-type Project = {
-  id: string;
-  title: string;
-  description?: string;
-  previewImageUrl?: string;
-  status?: string;
-  startedAt?: string;
-  timeline?: string;
-  role?: string;
-  team?: string;
-  projectLinks?: ProjectLink[];
+type Project = Omit<PortfolioProject, "projectSkillset" | "projectLinks"> & {
   projectSkillset?: ProjectSkill[];
+  projectLinks?: ProjectLink[];
 };
 
 type ProjectDetailsCardProps = {
@@ -68,9 +60,7 @@ class ErrorBoundary extends React.Component<
   }
 }
 
-export function ProjectDetailsCard({
-  project,
-}: ProjectDetailsCardProps) {
+export function ProjectDetailsCard({ project }: ProjectDetailsCardProps) {
   // Ensure project is defined
   if (!project) {
     return (
@@ -131,9 +121,6 @@ export function ProjectDetailsCard({
 
         {/* Tech Stack */}
         <ProjectTechStack technologies={technologies} />
-
-
-
       </div>
     </ErrorBoundary>
   );
